@@ -21,8 +21,8 @@ function App() {
     const data = e.target.elements[0].value;
     const tx = await simpleStorage.addCollateral(data);
     await tx.wait();
-    // const newData = await simpleStorage.readData();
-    // setData(newData);
+    const newData = await simpleStorage.readCollateral();
+    setData(newData);
   };
 
   if(
