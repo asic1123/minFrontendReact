@@ -8,7 +8,8 @@ function App() {
   useEffect(() => {
     const init = async () => {
       const { simpleStorage } = await getBlockchain();
-      const data = await simpleStorage.readData();
+      const data = await simpleStorage.readCollateral();
+      // const data = 10;
       setSimpleStorage(simpleStorage);
       setData(data);
     };
@@ -18,10 +19,10 @@ function App() {
   const updateData = async e => {
     e.preventDefault();
     const data = e.target.elements[0].value;
-    const tx = await simpleStorage.updateData(data);
+    const tx = await simpleStorage.addCollateral(data);
     await tx.wait();
-    const newData = await simpleStorage.readData();
-    setData(newData);
+    // const newData = await simpleStorage.readData();
+    // setData(newData);
   };
 
   if(
@@ -36,12 +37,12 @@ function App() {
       <div className='row'>
 
         <div className='col-sm-6'>
-          <h2>Data:</h2>
+          <h2>Collateral:</h2>
           <p>{data.toString()}</p>
         </div>
 
         <div className='col-sm-6'>
-          <h2>Change data</h2>
+          <h2>Add Collateral</h2>
           <form className="form-inline" onSubmit={e => updateData(e)}>
             <input 
               type="text" 
