@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import getBlockchain from './ethereum.js';
+import callWETHApprove from './callWethApprove.js'
 
 function App() {
   const [simpleStorage, setSimpleStorage] = useState(undefined);
@@ -22,6 +23,7 @@ function App() {
   const updateData = async e => {
     e.preventDefault();
     const data = e.target.elements[0].value;
+    await callWETHApprove(data);
     const tx = await simpleStorage.addCollateral(data);
     await tx.wait();
     const newData = await simpleStorage.readCollateral();
