@@ -70,12 +70,10 @@ function App() {
       <br /> 
       <br /> 
       <div className='row'>
-
         <div className='col-sm-6'>
-          <h2>Collateral:</h2>
+          <h2>Collateral Deposited:</h2>
           <p>{data.toString()}</p>
         </div>
-
         <div className='col-sm-6'>
           <h2>Add Collateral</h2>
           <form className="form-inline" onSubmit={e => updateData(e)}>
@@ -92,52 +90,16 @@ function App() {
             </button>
           </form>
         </div>
-
       </div>
       <br /> 
       <br /> 
       <br /> 
       <br /> 
-      <br /> 
-      <br /> 
       <div className='row'>
-
-        <div className='col-sm-6'>
-          <h2>Collateral:</h2>
-          <p>{data.toString()}</p>
-        </div>
-
-        <div className='col-sm-6'>
-          <h2>Remove Collateral</h2>
-          <form className="form-inline" onSubmit={e => removeCollateral(e)}>
-            <input 
-              type="text" 
-              className="form-control" 
-              placeholder="data"
-            />
-            <button 
-              type="submit" 
-              className="btn btn-primary"
-            >
-              Submit
-            </button>
-          </form>
-        </div>
-
-      </div>
-      <br /> 
-      <br /> 
-      <br /> 
-      <br /> 
-      <br /> 
-      <br /> 
-      <div className='row'>
-
         <div className='col-sm-6'>
           <h2>MIM Borrowed:</h2>
           <p>{dataMim.toString()}</p>
         </div>
-
         <div className='col-sm-6'>
           <h2>Borrow MIM</h2>
           <form className="form-inline" onSubmit={e => borrowMim(e)}>
@@ -154,21 +116,16 @@ function App() {
             </button>
           </form>
         </div>
-
       </div>
       <br /> 
       <br /> 
       <br /> 
       <br /> 
-      <br /> 
-      <br /> 
       <div className='row'>
-
         <div className='col-sm-6'>
           <h2>MIM Borrowed:</h2>
           <p>{dataMim.toString()}</p>
         </div>
-
         <div className='col-sm-6'>
           <h2>Repay MIM</h2>
           <form className="form-inline" onSubmit={e => repayMim(e)}>
@@ -185,8 +142,33 @@ function App() {
             </button>
           </form>
         </div>
-
       </div> 
+      <br /> 
+      <br /> 
+      <br /> 
+      <br /> 
+      <div className='row'>
+        <div className='col-sm-6'>
+          <h2>Collateral Deposited:</h2>
+          <p>{data.toString()}</p>
+        </div>
+        <div className='col-sm-6'>
+          <h2>Remove Collateral</h2>
+          <form className="form-inline" onSubmit={e => removeCollateral(e)}>
+            <input 
+              type="text" 
+              className="form-control" 
+              placeholder="data"
+            />
+            <button 
+              type="submit" 
+              className="btn btn-primary"
+            >
+              Submit
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   );
 }
