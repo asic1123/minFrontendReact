@@ -37,19 +37,11 @@
         "constant": false,
         "inputs": [
           {
-            "name": "_contract",
-            "type": "address"
-          },
-          {
-            "name": "_to",
-            "type": "address"
-          },
-          {
-            "name": "amount",
+            "name": "Number",
             "type": "uint256"
           }
         ],
-        "name": "borrowMIM",
+        "name": "removeCollateral",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
@@ -78,23 +70,11 @@
         "constant": false,
         "inputs": [
           {
-            "name": "_contract",
+            "name": "_vaultAddress",
             "type": "address"
-          },
-          {
-            "name": "_from",
-            "type": "address"
-          },
-          {
-            "name": "_to",
-            "type": "address"
-          },
-          {
-            "name": "Number",
-            "type": "uint256"
           }
         ],
-        "name": "removeCollateral",
+        "name": "setVaultAddress",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
@@ -104,11 +84,11 @@
         "constant": false,
         "inputs": [
           {
-            "name": "_vaultAddress",
-            "type": "address"
+            "name": "amount",
+            "type": "uint256"
           }
         ],
-        "name": "setVaultAddress",
+        "name": "borrowMIM",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
@@ -174,22 +154,28 @@
         "constant": false,
         "inputs": [
           {
-            "name": "_contract",
+            "name": "_mimAddress",
             "type": "address"
-          },
-          {
-            "name": "_from",
-            "type": "address"
-          },
-          {
-            "name": "amount",
-            "type": "uint256"
           }
         ],
-        "name": "repayMIM",
+        "name": "setMimAddress",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [],
+        "name": "readMim",
+        "outputs": [
+          {
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
         "type": "function"
       },
       {
@@ -209,6 +195,20 @@
         ],
         "payable": false,
         "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "amount",
+            "type": "uint256"
+          }
+        ],
+        "name": "repayMIM",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
         "type": "function"
       },
       {
@@ -1077,7 +1077,7 @@
     "3": {
       "events": {},
       "links": {},
-      "address": "0x4644964562c4fc843066B5aF76301Aa7Cf93a818",
+      "address": "0x2714472C541E7966217694b92a39E012e37A7a23",
       "transactionHash": "0x0d89801480833774ca4ac408461a318d5c6806043b6e83d619bf88e4aa1fcc94"
     },
     "5777": {
