@@ -1,7 +1,7 @@
-import { ethers } from 'ethers';
+import detectEthereumProvider from '@metamask/detect-provider';
+import { ethers, Contract } from 'ethers';
 
 
-const VaultAddress = "0xd972E1681Ad3937f5d405F3789a7ee47857Db939";
 const WETHAddress = "0xd68597e66830aef0c6DE249CdBC16e03d4c1e86a";
 const WETHABI = [
 	{
@@ -283,10 +283,31 @@ const WETHABI = [
 	}
 ];
 
-async function callWETHApprove(data){
-  const provider = new ethers.providers.Web3Provider(window.ethereum);
-  const WETHContract = new ethers.Contract(WETHAddress, WETHABI, provider.getSigner());
 
-  await WETHContract.approve(VaultAddress, data);  
-}
-export default callWETHApprove;
+const getWETH = () =>
+  new Promise( async (resolve, reject) => {
+    let provider = await detectEthereumProvider();
+    if(provider) {
+      await provider.request({ method: 'eth_requestAccounts' });
+      provider = new ethers.providers.Web3Provider(provider);
+      const signer = provider.getSigner();
+      console.log(WETHAddress);
+      const WETHContract = new Contract(
+        WETHAddress,
+        WETHABI,
+        signer
+      );
+      resolve({WETHContract});
+      return;
+    }
+    reject('Install Metamask');
+  });
+
+export default getWETH;
+
+
+// async function callWETHApprove(data){
+//   const provider = new ethers.providers.Web3Provider(window.ethereum);
+//   const WETHContract = new ethers.Contract(WETHAddress, WETHABI, provider.getSigner());
+//   await WETHContract.approve(VaultAddress, data);  
+// }

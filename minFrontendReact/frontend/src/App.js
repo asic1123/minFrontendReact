@@ -1,19 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import getBlockchain from './ethereum.js';
-import callWETHApprove from './callWethApprove.js'
+import getWETH from './callWethApprove.js'
+
+const VaultAddress = "0xd972E1681Ad3937f5d405F3789a7ee47857Db939";
 
 function App() {
   const [simpleStorage, setSimpleStorage] = useState(undefined);
+  const [WETHContract, setWETHContract] = useState(undefined);
   const [data, setData] = useState(undefined);
   const [dataMim, setDataMim] = useState(undefined);
 
   useEffect(() => {
     const init = async () => {
       const { simpleStorage } = await getBlockchain();
+      const { WETHContract } = await getWETH();
       const data = await simpleStorage.readCollateral();
       const dataMim = await simpleStorage.readMim();
       // const data = 10;
       setSimpleStorage(simpleStorage);
+      setWETHContract(WETHContract);
       setData(data);
       setDataMim(dataMim);
     };
@@ -23,7 +28,8 @@ function App() {
   const updateData = async e => {
     e.preventDefault();
     const data = e.target.elements[0].value;
-    await callWETHApprove(data);
+    const tz = await WETHContract.approve(VaultAddress, data);
+    await tz.wait();
     const tx = await simpleStorage.addCollateral(data);
     await tx.wait();
     const newData = await simpleStorage.readCollateral();
